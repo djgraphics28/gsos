@@ -13,6 +13,7 @@ use App\Livewire\Building\Edit as BuildingEdit;
 
 use App\Livewire\RolesAndPermissions\Index as RolesAndPermissionsIndex;
 use App\Livewire\RolesAndPermissions\Create as RolesAndPermissionsCreate;
+use App\Livewire\RolesAndPermissions\Edit as RolesAndPermissionsEdit;
 
 use App\Livewire\Workflow\Index as WorkflowIndex;
 use App\Livewire\Workflow\Create as WorkflowCreate;
@@ -36,10 +37,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('permission:access profile');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('permission:edit profile');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware('permission:edit profile');
 
     Route::middleware('permission:access users')->group(function () {
         Route::get('/users', UserIndex::class)->name('users.index');
@@ -56,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('permission:access roles')->group(function () {
         Route::get('roles-and-permissions', RolesAndPermissionsIndex::class)->name('roles.permissions');
         Route::get('roles-and-permissions/create', RolesAndPermissionsCreate::class)->name('roles.permissions.create');
+        Route::get('roles-and-permissions/{roleId}/edit', RolesAndPermissionsEdit::class)->name('roles.permissions.edit');
     });
 
     Route::middleware('permission:access workflows')->group(function () {

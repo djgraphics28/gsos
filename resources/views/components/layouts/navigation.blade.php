@@ -46,7 +46,7 @@
     </li>
 
     <!-- Nav Item - Roles & Permissions Collapse Menu -->
-    <li class="nav-item {{ request()->is('roles-and-permissions') ? 'active' : '' }}">
+    <li class="nav-item {{ request()->is('roles-and-permissions*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('roles.permissions') }}">
             <i class="fas fa-fw fa-lock"></i>
             <span>Roles & Permissions</span></a>

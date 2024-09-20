@@ -19,6 +19,8 @@ class RolesAndPermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create permissions
+        Permission::create(['name' => 'access dashboard']);
+
         Permission::create(['name' => 'access users']);
         Permission::create(['name' => 'create users']);
         Permission::create(['name' => 'edit users']);
@@ -28,11 +30,6 @@ class RolesAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'create roles']);
         Permission::create(['name' => 'edit roles']);
         Permission::create(['name' => 'delete roles']);
-
-        Permission::create(['name' => 'access permissions']);
-        Permission::create(['name' => 'create permissions']);
-        Permission::create(['name' => 'edit permissions']);
-        Permission::create(['name' => 'delete permissions']);
 
         Permission::create(['name' => 'access buildings']);
         Permission::create(['name' => 'create buildings']);
@@ -50,6 +47,7 @@ class RolesAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'access app settings']);
 
         Permission::create(['name' => 'access profile']);
+        Permission::create(['name' => 'edit profile']);
 
         Permission::create(['name' => 'access workflows']);
         Permission::create(['name' => 'create workflows']);
@@ -66,6 +64,9 @@ class RolesAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'edit tickets']);
         Permission::create(['name' => 'delete tickets']);
         Permission::create(['name' => 'assign tickets']);
+        Permission::create(['name' => 'open tickets']);
+        Permission::create(['name' => 'in-progress tickets']);
+        Permission::create(['name' => 'closed tickets']);
 
         // Create roles and assign existing permissions
         $superAdminRole = Role::create(['name' => 'superadmin']);
