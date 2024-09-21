@@ -25,48 +25,7 @@
 
                         <label for="">Select Permissions</label>
 
-                        <!-- Grouped Permissions -->
-                        <div class="form-group row">
-                            @foreach ($this->groupedPermissions as $group => $permissions)
-                                <div class="col-md-6">
-                                    <div class="card mb-4 shadow">
-                                        <div class="card-header bg-secondary text-white">
-                                            <h5 class="font-weight-bold text-capitalize d-inline">{{ $group }}
-                                            </h5>
-                                            <div class="form-check d-inline float-right">
-                                                <input class="form-check-input" type="checkbox"
-                                                    id="select-all-{{ $group }}"
-                                                    wire:click="toggleSelectAll('{{ $group }}')">
-                                                <label class="form-check-label" for="select-all-{{ $group }}">
-                                                    Select All
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                @foreach ($permissions as $permission)
-                                                    <div class="col-md-3">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                wire:model="selectedPermissions"
-                                                                value="{{ $permission->name }}"
-                                                                id="permission-{{ $permission->id }}">
-                                                            <label class="form-check-label"
-                                                                for="permission-{{ $permission->id }}">
-                                                                {{ ucfirst(str_replace('_', ' ', $permission->name)) }}
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                            @error('selectedPermissions')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+
 
                         <!-- Submit Button -->
                         <div class="form-group text-right">
