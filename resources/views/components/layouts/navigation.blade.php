@@ -12,12 +12,14 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
+    @can('access dashboard')
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
+    @endcan
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -27,6 +29,7 @@
         Navigation
     </div>
 
+    @can('access users')
     <!-- Nav Item - Users Collapse Menu -->
     <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
@@ -44,15 +47,18 @@
             </div>
         </div>
     </li>
+    @endcan
 
+    @can('access roles')
     <!-- Nav Item - Roles & Permissions Collapse Menu -->
     <li class="nav-item {{ request()->is('roles-and-permissions*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('roles.permissions') }}">
             <i class="fas fa-fw fa-lock"></i>
             <span>Roles & Permissions</span></a>
     </li>
+    @endcan
 
-
+    @can('access buildings')
     <!-- Nav Item - Buildings Collapse Menu -->
     <li class="nav-item {{ request()->is('buildings*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBuildings"
@@ -68,7 +74,9 @@
             </div>
         </div>
     </li>
+    @endcan
 
+    @can('access supply')
      <!-- Nav Item - Workflows Menu -->
      <li class="nav-item {{ request()->is('supply-and-equipments*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSupplyAndEquipments"
@@ -84,6 +92,7 @@
             </div>
         </div>
     </li>
+    @endcan
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -93,6 +102,7 @@
         Other Navigation
     </div>
 
+    @can('access tickets')
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -103,6 +113,8 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Ticket Components:</h6>
+                <a class="collapse-item" href="login.html">Submit Ticket</a>
+                <div class="collapse-divider"></div>
                 <a class="collapse-item" href="login.html">My Tickets</a>
                 <a class="collapse-item" href="register.html">My Assignments</a>
                 <div class="collapse-divider"></div>
@@ -113,7 +125,9 @@
             </div>
         </div>
     </li>
+    @endcan
 
+    @can('access workflows')
     <!-- Nav Item - Workflows Menu -->
     <li class="nav-item {{ request()->is('workflows*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseWorkflows"
@@ -129,7 +143,9 @@
             </div>
         </div>
     </li>
+    @endcan
 
+    @can('access forms')
      <!-- Nav Item - Forms Menu -->
      <li class="nav-item {{ request()->is('forms*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForms"
@@ -145,20 +161,43 @@
             </div>
         </div>
     </li>
+    @endcan
 
+    @can('access reports')
     <!-- Nav Item - Reports -->
     <li class="nav-item {{ request()->is('reports') ? 'active' : '' }}">
         <a class="nav-link {{ request()->is('reports') ? 'active' : '' }}" href="{{ route('reports.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Reports</span></a>
     </li>
+    @endcan
 
+    @can('access faqs')
+    <!-- Nav Item - FAQs Menu -->
+    <li class="nav-item {{ request()->is('faqs*') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFAQs"
+            aria-expanded="true" aria-controls="collapseFAQs">
+            <i class="fas fa-fw fa-building"></i>
+            <span>FAQs</span>
+        </a>
+        <div id="collapseFAQs" class="collapse {{ request()->is('faqs*') ? 'show' : '' }}" aria-labelledby="headingFAQs" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">FAQs Components:</h6>
+                <a class="collapse-item {{ request()->is('faqs') ? 'active' : '' }}" href="{{ route('faqs.index') }}">List of FAQs</a>
+                <a class="collapse-item {{ request()->is('faqs/create') ? 'active' : '' }}" href="{{ route('faqs.create') }}">Create New FAQ</a>
+            </div>
+        </div>
+    </li>
+    @endcan
+
+    @can('access app settings')
     <!-- Nav Item - App settings -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-cogs"></i>
             <span>App Settings</span></a>
     </li>
+    @endcan
 
     <!-- Nav Item - Tables -->
     {{-- <li class="nav-item">

@@ -27,6 +27,10 @@ use App\Livewire\SupplyEquipment\Index as SupplyEquipmentIndex;
 use App\Livewire\SupplyEquipment\Create as SupplyEquipmentCreate;
 use App\Livewire\SupplyEquipment\Edit as SupplyEquipmentEdit;
 
+use App\Livewire\Faqs\Index as FaqIndex;
+use App\Livewire\Faqs\Create as FaqCreate;
+use App\Livewire\Faqs\Edit as FaqEdit;
+
 use App\Livewire\Reports\Index as ReportIndex;
 
 Route::get('/', function () {
@@ -75,17 +79,19 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('permission:access supply and equipments')->group(function () {
         Route::get('/supply-and-equipments', SupplyEquipmentIndex::class)->name('supply-and-equipments.index');
         Route::get('/supply-and-equipments/create', SupplyEquipmentCreate::class)->name('supply-and-equipments.create');
-        Route::get('/supply-and-equipments/{se}/edit', SupplyEquipmentEdit::class)->name('supply-and-equipments.edit');
+        Route::get('/supply-and-equipments/{supplyId}/edit', SupplyEquipmentEdit::class)->name('supply-and-equipments.edit');
     });
 
     Route::middleware('permission:access reports')->group(function () {
         Route::get('/reports', ReportIndex::class)->name('reports.index');
     });
 
-    // // Routes for managing workflows
-    // Route::middleware('permission:access workflows')->group(function () {
-    //     Route::resource('workflows', WorkflowController::class);
-    // });
+    // Routes for managing FAQs
+    Route::middleware('permission:access faqs')->group(function () {
+        Route::get('/faqs', FaqIndex::class)->name('faqs.index');
+        Route::get('/faqs/create', FaqCreate::class)->name('faqs.create');
+        Route::get('/faqs/{faqId}/edit', FaqEdit::class)->name('faqs.edit');
+    });
 
     // // Routes for managing forms (submissions)
     // Route::middleware('permission:access forms')->group(function () {

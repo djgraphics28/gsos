@@ -3,15 +3,19 @@
 namespace App\Livewire\Users;
 
 use App\Models\User;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination, LivewireAlert;
 
     public $searchTerm = '';  // Search term
     protected $paginationTheme = 'bootstrap';  // Using Bootstrap for pagination
+
+    protected $listeners = ['delete'];
+    public $approveConfirmed;
 
     // Resetting pagination when the search term is updated
     public function updatingSearchTerm()
@@ -30,12 +34,22 @@ class Index extends Component
         return view('livewire.users.index', compact('users'));
     }
 
-    public function delete($userId)
+    public function alertConfirm($id)
     {
-        $user = User::findOrFail($userId);
+        $this->approveConfirmed = $id;
+
+        $this->confirm('Are you sure you want to delete this?', [
+            'confirmButtonText' => 'Yes Delete it!',
+            'onConfirmed' => 'delete',
+        ]);
+    }
+
+    public function delete()
+    {
+        $user = User::findOrFail($this->approveConfirmed);
         $user->delete();
 
         // Add a success message (e.g., using Toastr or session flash)
-        session()->flash('message', 'User has been deleted successfully.');
+        toastr()->success('User has been deleted successfully.');
     }
 }

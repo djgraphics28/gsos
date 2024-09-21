@@ -4,6 +4,7 @@ namespace App\Livewire\Users;
 
 use App\Models\User;
 use Livewire\Component;
+use App\Models\Building;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,7 @@ class Create extends Component
     public $email;
     public $password;
     public $roles;
+    public $buildings;
 
     // Method to create a new user
     public function createUser()
@@ -37,8 +39,12 @@ class Create extends Component
         // Assign selected roles to the user
         $user->roles()->attach($this->roles);
 
+        // Assign selected buildings to user
+        $user->buildings()->sync($this->buildings);
+
         // Flash message for success
         if ($user instanceof Model) {
+
             toastr()->success('New User has been saved successfully!');
 
             return redirect()->route('users.index');
@@ -54,6 +60,8 @@ class Create extends Component
         // Fetch available roles from the database
         $availableRoles = Role::all();
 
-        return view('livewire.users.create', compact('availableRoles'));
+        $activeBuildings = Building::where('is_active', true)->get();
+
+        return view('livewire.users.create', compact(['availableRoles', 'activeBuildings']));
     }
 }

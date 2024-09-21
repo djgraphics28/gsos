@@ -1,45 +1,48 @@
 <div>
-    @section('title', 'List of Workflows')
+    @section('title', 'List of FAQs')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">{{ __('List of Workflows') }}</h1>
-        <a href="{{ route('workflows.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Create New
+        <h1 class="h3 mb-0 text-gray-800">{{ __('List of FAQs') }}</h1>
+        <a href="{{ route('faqs.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Create New FAQ
         </a>
     </div>
 
     <!-- Search Input -->
     <div class="mb-4">
-        <input type="text" wire:model.live="searchTerm" class="form-control" placeholder="Search for workflows...">
+        <input type="text" wire:model.live="searchTerm" class="form-control" placeholder="Search for FAQs...">
     </div>
 
-    <!-- Workflows Table -->
+    <!-- FAQs Table -->
     <div class="py-12 mb-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="card shadow mb-4">
                 <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary">{{ __('Workflows List') }}</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">{{ __('FAQs List') }}</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped" id="workflowsTable">
+                        <table class="table table-bordered table-striped" id="faqsTable">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>ID</th>
-                                    <th>{{ __('Name') }}</th>
+                                    <th>{{ __('Question') }}</th>
+                                    <th>{{ __('Answer') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($workflows as $workflow)
+                                @forelse ($faqs as $faq)
                                     <tr>
-                                        <td>{{ $workflow->id }}</td>
-                                        <td>{{ $workflow->name }}</td>
+                                        <td>{{ $faq->id }}</td>
+                                        <td>{{ $faq->key }}</td>
+                                        <td>{{ Str::limit($faq->value, 50) }}</td> <!-- Limit the answer for better UX -->
+                                        <td>{{ $faq->is_active ? 'Active' : 'Inactive' }}</td>
                                         <td>
-                                            <a href="{{ route('workflows.edit', $workflow->id) }}"
-                                                class="btn btn-sm btn-warning">
+                                            <a href="{{ route('faqs.edit', $faq->id) }}" class="btn btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i> Edit
                                             </a>
-                                            <button wire:click="alertConfirm({{ $workflow->id }})"
+                                            <button wire:click="alertConfirm({{ $faq->id }})"
                                                 class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash-alt"></i> Delete
                                             </button>
@@ -47,7 +50,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="3">No workflows found.</td>
+                                        <td colspan="5">No FAQs found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -56,7 +59,7 @@
 
                     <!-- Pagination Links -->
                     <div class="mt-3">
-                        {{ $workflows->links() }}
+                        {{ $faqs->links() }}
                     </div>
                 </div>
             </div>

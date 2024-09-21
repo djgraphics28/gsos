@@ -28,6 +28,7 @@
                                     <th>{{ __('Email') }}</th>
                                     <th>{{ __('Verified At') }}</th>
                                     <th>{{ __('Roles') }}</th>
+                                    <th>{{ __('Building') }}</th>
                                     <th>{{ __('Actions') }}</th>
                                 </tr>
                             </thead>
@@ -46,11 +47,17 @@
                                             @endforeach
                                         </td>
                                         <td>
+                                            <!-- Display Buildings as Badges -->
+                                            @foreach ($user->buildings as $building)
+                                                <span class="badge badge-success">{{ $building->name }}</span>
+                                            @endforeach
+                                        </td>
+                                        <td>
                                             <a href="{{ route('users.edit', $user->id) }}"
                                                 class="btn btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i> Edit
                                             </a>
-                                            <button wire:click="delete({{ $user->id }})"
+                                            <button wire:click="alertConfirm({{ $user->id }})"
                                                 class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash-alt"></i> Delete
                                             </button>
@@ -58,7 +65,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6">No users found.</td>
+                                        <td colspan="7">No users found.</td>
                                     </tr>
                                 @endforelse
                             </tbody>

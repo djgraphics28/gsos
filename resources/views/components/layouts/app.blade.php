@@ -19,7 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 
     @livewireStyles
 </head>
@@ -47,7 +51,29 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
+                    <!-- Topbar with Dropdown Button without Caret Icon -->
+                    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-plus"></i> Quick Add
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Submit Ticket</a>
+                                    <a class="dropdown-item" href="{{ route('users.create') }}">Create Users</a>
+                                    <a class="dropdown-item" href="{{ route('roles.permissions.create') }}">Create
+                                        Roles</a>
+                                    <a class="dropdown-item" href="{{ route('buildings.create') }}">Create Buildings</a>
+                                    <a class="dropdown-item" href="{{ route('supply-and-equipments.create') }}">Create
+                                        Supply & Equipments</a>
+                                    <a class="dropdown-item" href="{{ route('workflows.create') }}">Create Workflows</a>
+                                    <a class="dropdown-item" href="{{ route('forms.create') }}">Create Forms</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -59,7 +85,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -135,7 +161,8 @@
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
+                                    Alerts</a>
                             </div>
                         </li>
 
@@ -211,7 +238,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name ?? '' }}</span>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name ?? '' }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('assets/img/undraw_profile.svg') }}">
                             </a>
@@ -231,7 +259,8 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -246,7 +275,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                   {{ $slot }}
+                    {{ $slot }}
 
                 </div>
                 <!-- /.container-fluid -->
@@ -294,7 +323,7 @@
                         @csrf
 
                         <x-responsive-nav-link class="btn btn-primary text-white" :href="route('logout')"
-                                onclick="event.preventDefault();
+                            onclick="event.preventDefault();
                                             this.closest('form').submit();">
                             {{ __('Log Out') }}
                         </x-responsive-nav-link>
@@ -322,6 +351,10 @@
     <script src="{{ asset('assets/js/demo/chart-pie-demo.js') }}"></script>
 
     @livewireScripts
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <x-livewire-alert::scripts />
 
 </body>
 

@@ -59,6 +59,11 @@ class RolesAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'edit forms']);
         Permission::create(['name' => 'delete forms']);
 
+        Permission::create(['name' => 'access faqs']);
+        Permission::create(['name' => 'create faqs']);
+        Permission::create(['name' => 'edit faqs']);
+        Permission::create(['name' => 'delete faqs']);
+
         Permission::create(['name' => 'access tickets']);
         Permission::create(['name' => 'create tickets']);
         Permission::create(['name' => 'edit tickets']);

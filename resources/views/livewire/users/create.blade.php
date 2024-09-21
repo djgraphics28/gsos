@@ -47,6 +47,17 @@
                             @error('roles') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
 
+                        <div class="form-group">
+                            <label for="buildings" class="form-label">Select Building</label>
+                            <select id="buildings" wire:model="buildings" class="form-control">
+                                <option value="">Choose</option>
+                                @foreach ($activeBuildings as $building)
+                                    <option value="{{ $building->id }}">{{ $building->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('buildings') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
+
                         <!-- Submit Button -->
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary">

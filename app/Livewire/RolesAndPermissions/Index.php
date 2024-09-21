@@ -2,17 +2,21 @@
 
 namespace App\Livewire\RolesAndPermissions;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
 
 class Index extends Component
 {
-    use WithPagination;
+    use WithPagination, LivewireAlert;
 
     public $searchTerm = '';  // Search term
 
     protected $paginationTheme = 'bootstrap';
+
+    protected $listeners = ['delete'];
+    public $approveConfirmed;
 
     // Resetting pagination when searching
     public function updatingSearchTerm()
@@ -30,9 +34,19 @@ class Index extends Component
         return view('livewire.roles-and-permissions.index', compact('roles'));
     }
 
-    public function delete($roleId)
+    public function alertConfirm($id)
     {
-        $role = Role::findOrFail($roleId);
+        $this->approveConfirmed = $id;
+
+        $this->confirm('Are you sure you want to delete this?', [
+            'confirmButtonText' => 'Yes Delete it!',
+            'onConfirmed' => 'delete',
+        ]);
+    }
+
+    public function delete()
+    {
+        $role = Role::findOrFail($this->approveConfirmed);
         $role->delete();
 
         toastr()->success('Role has been deleted successfully.');

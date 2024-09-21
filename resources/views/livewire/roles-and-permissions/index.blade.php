@@ -47,7 +47,7 @@
                                                 class="btn btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i> Edit
                                             </a>
-                                            <button wire:click="delete({{ $role->id }})"
+                                            <button wire:click="alertConfirm({{ $role->id }})"
                                                 class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash-alt"></i> Delete
                                             </button>
