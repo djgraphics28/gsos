@@ -45,18 +45,20 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            @can('edit roles')
-                                                <a wire:navigate href="{{ route('roles.permissions.edit', $role->id) }}"
-                                                    class="btn btn-sm btn-warning">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
-                                            @endcan
-                                            @can('delete roles')
-                                                <button wire:click="alertConfirm({{ $role->id }})"
-                                                    class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                </button>
-                                            @endcan
+                                            @if ($role->id !== 1)
+                                                @can('edit roles')
+                                                    <a wire:navigate href="{{ route('roles.permissions.edit', $role->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                @endcan
+                                                @can('delete roles')
+                                                    <button wire:click="alertConfirm({{ $role->id }})"
+                                                        class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash-alt"></i> Delete
+                                                    </button>
+                                                @endcan
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
