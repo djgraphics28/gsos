@@ -2,8 +2,10 @@
     @section('title', 'List of Users')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ __('List of Users') }}</h1>
-        <a href="{{ route('users.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Create New</a>
+        @can('create users')
+            <a href="{{ route('users.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Create New</a>
+        @endcan
     </div>
 
     <!-- Search Input -->
@@ -53,14 +55,18 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a href="{{ route('users.edit', $user->id) }}"
-                                                class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <button wire:click="alertConfirm({{ $user->id }})"
-                                                class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
+                                            @can('edit users')
+                                                <a href="{{ route('users.edit', $user->id) }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                            @endcan
+                                            @can('delete users')
+                                                <button wire:click="alertConfirm({{ $user->id }})"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

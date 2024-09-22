@@ -60,15 +60,32 @@
                                     <i class="fas fa-plus"></i> Quick Add
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Submit Ticket</a>
-                                    <a class="dropdown-item" href="{{ route('users.create') }}">Create Users</a>
-                                    <a class="dropdown-item" href="{{ route('roles.permissions.create') }}">Create
+                                    @can('submit tickets')
+                                        <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Submit Ticket</a>
+                                    @endcan
+                                    @can('create users')
+                                        <a class="dropdown-item" href="{{ route('users.create') }}"><i class="fas fa-plus"></i> Create Users</a>
+                                    @endcan
+                                    @can('create roles')
+                                        <a class="dropdown-item" href="{{ route('roles.permissions.create') }}"><i class="fas fa-plus"></i> Create
+                                        @endcan
                                         Roles</a>
-                                    <a class="dropdown-item" href="{{ route('buildings.create') }}">Create Buildings</a>
-                                    <a class="dropdown-item" href="{{ route('supply-and-equipments.create') }}">Create
-                                        Supply & Equipments</a>
-                                    <a class="dropdown-item" href="{{ route('workflows.create') }}">Create Workflows</a>
-                                    <a class="dropdown-item" href="{{ route('forms.create') }}">Create Forms</a>
+                                    @can('create buildings')
+                                        <a class="dropdown-item" href="{{ route('buildings.create') }}"><i class="fas fa-plus"></i> Create Buildings</a>
+                                    @endcan
+                                    @can('create supply and equipments')
+                                        <a class="dropdown-item" href="{{ route('supply-and-equipments.create') }}"><i class="fas fa-plus"></i> Create
+                                            Supply & Equipments</a>
+                                    @endcan
+                                    @can('create workflows')
+                                        <a class="dropdown-item" href="{{ route('workflows.create') }}"><i class="fas fa-plus"></i> Create Workflows</a>
+                                    @endcan
+                                    @can('create forms')
+                                        <a class="dropdown-item" href="{{ route('forms.create') }}"><i class="fas fa-plus"></i> Create Forms</a>
+                                    @endcan
+                                    @can('create faqs')
+                                        <a class="dropdown-item" href="{{ route('faqs.create') }}"><i class="fas fa-plus"></i> Create FAQs</a>
+                                    @endcan
                                 </div>
                             </div>
                         </div>
@@ -246,10 +263,12 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
+                                @can('access profile')
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                @endcan
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings

@@ -2,14 +2,18 @@
     @section('title', 'List of Supplies & Equipment')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ __('List of Supplies & Equipment') }}</h1>
-        <a href="{{ route('supply-and-equipments.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Create New
-        </a>
+        @can('create supply and equipments')
+            <a href="{{ route('supply-and-equipments.create') }}"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Create New
+            </a>
+        @endcan
     </div>
 
     <!-- Search Input -->
     <div class="mb-4">
-        <input type="text" wire:model.live="searchTerm" class="form-control" placeholder="Search for supplies & equipment...">
+        <input type="text" wire:model.live="searchTerm" class="form-control"
+            placeholder="Search for supplies & equipment...">
     </div>
 
     <!-- Supplies & Equipment Table -->
@@ -43,12 +47,18 @@
                                         <td>{{ $supply->unit }}</td>
                                         <td>{{ $supply->building->name ?? 'N/A' }}</td>
                                         <td>
-                                            <a href="{{ route('supply-and-equipments.edit', $supply->id) }}" class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <button wire:click="alertConfirm({{ $supply->id }})" class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
+                                            @can('edit supply and equipments')
+                                                <a href="{{ route('supply-and-equipments.edit', $supply->id) }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                            @endcan
+                                            @can('delete supply and equipments')
+                                                <button wire:click="alertConfirm({{ $supply->id }})"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

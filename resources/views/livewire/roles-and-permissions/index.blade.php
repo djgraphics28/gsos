@@ -4,10 +4,12 @@
     <!-- Page Header -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ __('Roles & Permissions') }}</h1>
-        <a href="{{ route('roles.permissions.create') }}"
-            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Create New
-        </a>
+        @can('create roles')
+            <a href="{{ route('roles.permissions.create') }}"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Create New
+            </a>
+        @endcan
     </div>
 
     <!-- Search Input -->
@@ -43,14 +45,18 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a wire:navigate href="{{ route('roles.permissions.edit', $role->id) }}"
-                                                class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <button wire:click="alertConfirm({{ $role->id }})"
-                                                class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
+                                            @can('edit roles')
+                                                <a wire:navigate href="{{ route('roles.permissions.edit', $role->id) }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                            @endcan
+                                            @can('delete roles')
+                                                <button wire:click="alertConfirm({{ $role->id }})"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

@@ -2,9 +2,11 @@
     @section('title', 'List of Workflows')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ __('List of Workflows') }}</h1>
-        <a href="{{ route('workflows.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Create New
-        </a>
+        @can('create workflows')
+            <a href="{{ route('workflows.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Create New
+            </a>
+        @endcan
     </div>
 
     <!-- Search Input -->
@@ -35,14 +37,18 @@
                                         <td>{{ $workflow->id }}</td>
                                         <td>{{ $workflow->name }}</td>
                                         <td>
-                                            <a href="{{ route('workflows.edit', $workflow->id) }}"
-                                                class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <button wire:click="alertConfirm({{ $workflow->id }})"
-                                                class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
+                                            @can('edit workflows')
+                                                <a href="{{ route('workflows.edit', $workflow->id) }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                            @endcan
+                                            @can('delete workflows')
+                                                <button wire:click="alertConfirm({{ $workflow->id }})"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

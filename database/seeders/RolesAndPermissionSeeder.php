@@ -65,6 +65,8 @@ class RolesAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'delete faqs']);
 
         Permission::create(['name' => 'access tickets']);
+        Permission::create(['name' => 'submit tickets']);
+        Permission::create(['name' => 'my tickets']);
         Permission::create(['name' => 'create tickets']);
         Permission::create(['name' => 'edit tickets']);
         Permission::create(['name' => 'delete tickets']);

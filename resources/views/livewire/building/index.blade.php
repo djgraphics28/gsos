@@ -2,8 +2,10 @@
     @section('title', 'List of Buildings')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ __('List of Buildings') }}</h1>
-        <a href="{{ route('buildings.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Create New</a>
+        @can('create buildings')
+            <a href="{{ route('buildings.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-plus fa-sm text-white-50"></i> Create New</a>
+        @endcan
     </div>
 
     <!-- Search Input -->
@@ -34,16 +36,20 @@
                                     <tr>
                                         <td>{{ $building->id }}</td>
                                         <td>{{ $building->name }}</td>
-                                        <td>{{ $building->is_active ? 'Active' : Not-Active }}</td>
+                                        <td>{{ $building->is_active ? 'Active' : Not - Active }}</td>
                                         <td>
-                                            <a href="{{ route('buildings.edit', $building->id) }}"
-                                                class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <button wire:click="alertConfirm({{ $building->id }})"
-                                                class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
+                                            @can('edit buildings')
+                                                <a href="{{ route('buildings.edit', $building->id) }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                            @endcan
+                                            @can('delete buildings')
+                                                <button wire:click="alertConfirm({{ $building->id }})"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty

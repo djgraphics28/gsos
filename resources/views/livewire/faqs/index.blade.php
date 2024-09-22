@@ -2,9 +2,11 @@
     @section('title', 'List of FAQs')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{ __('List of FAQs') }}</h1>
-        <a href="{{ route('faqs.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Create New FAQ
-        </a>
+        @can('create faqs')
+            <a href="{{ route('faqs.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Create New FAQ
+            </a>
+        @endcan
     </div>
 
     <!-- Search Input -->
@@ -36,16 +38,22 @@
                                     <tr>
                                         <td>{{ $faq->id }}</td>
                                         <td>{{ $faq->key }}</td>
-                                        <td>{{ Str::limit($faq->value, 50) }}</td> <!-- Limit the answer for better UX -->
+                                        <td>{{ Str::limit($faq->value, 50) }}</td>
+                                        <!-- Limit the answer for better UX -->
                                         <td>{{ $faq->is_active ? 'Active' : 'Inactive' }}</td>
                                         <td>
-                                            <a href="{{ route('faqs.edit', $faq->id) }}" class="btn btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <button wire:click="alertConfirm({{ $faq->id }})"
-                                                class="btn btn-sm btn-danger">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
+                                            @can('edit faqs')
+                                                <a href="{{ route('faqs.edit', $faq->id) }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                            @endcan
+                                            @can('delete faqs')
+                                                <button wire:click="alertConfirm({{ $faq->id }})"
+                                                    class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @empty
