@@ -55,18 +55,20 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            @can('edit users')
-                                                <a href="{{ route('users.edit', $user->id) }}"
-                                                    class="btn btn-sm btn-warning">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
-                                            @endcan
-                                            @can('delete users')
-                                                <button wire:click="alertConfirm({{ $user->id }})"
-                                                    class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                </button>
-                                            @endcan
+                                            @if ($user->id !== 1)
+                                                @can('edit users')
+                                                    <a href="{{ route('users.edit', $user->id) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </a>
+                                                @endcan
+                                                @can('delete users')
+                                                    <button wire:click="alertConfirm({{ $user->id }})"
+                                                        class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash-alt"></i> Delete
+                                                    </button>
+                                                @endcan
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
