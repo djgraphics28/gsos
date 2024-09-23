@@ -43,7 +43,7 @@
                                         <td>{{ $supply->id }}</td>
                                         <td>{{ $supply->name }}</td>
                                         <td>{{ ucfirst($supply->category) }}</td>
-                                        <td>{{ $supply->quantity }}</td>
+                                        <td class="text-center">{{ $supply->quantity }}</td>
                                         <td>{{ $supply->unit }}</td>
                                         <td>{{ $supply->building->name ?? 'N/A' }}</td>
                                         <td>
