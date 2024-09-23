@@ -47,6 +47,11 @@ class Create extends Component
 
             toastr()->success('New User has been saved successfully!');
 
+            // Send email verification
+            $user->sendEmailVerificationNotification();
+
+            toastr()->success('Email Verification has been sent to '. $this->email);
+
             return redirect()->route('users.index');
         }
 

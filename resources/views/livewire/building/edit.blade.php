@@ -24,7 +24,7 @@
                         <!-- Submit Button -->
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Save Changes
+                                <i class="fas fa-save"></i> Update Building
                             </button>
                         </div>
                     </form>

@@ -26,6 +26,7 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>ID</th>
+                                    <th>{{ __('Picture') }}</th>
                                     <th>{{ __('Name') }}</th>
                                     <th>{{ __('Email') }}</th>
                                     <th>{{ __('Verified At') }}</th>
@@ -38,6 +39,12 @@
                                 @forelse ($users as $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
+                                        <td>
+                                            <img id="profile_picture_preview"
+                                                src="{{ $user->getFirstMediaUrl('profile_pictures') ?: 'https://via.placeholder.com/150' }}"
+                                                alt="Profile Picture" class="img-thumbnail" width="50"
+                                                height="50">
+                                        </td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->email_verified_at ? $user->email_verified_at->format('Y-m-d H:i:s') : 'Not Verified' }}

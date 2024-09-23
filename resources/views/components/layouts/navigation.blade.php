@@ -43,47 +43,39 @@
                     <h6 class="collapse-header">User Components:</h6>
                     <a class="collapse-item {{ request()->is('users') ? 'active' : '' }}"
                         href="{{ route('users.index') }}">List of Users</a>
-                    @can('create users')
+                    {{-- @can('create users')
                         <a class="collapse-item {{ request()->is('users/create') ? 'active' : '' }}"
                             href="{{ route('users.create') }}">Create New User</a>
-                    @endcan
+                    @endcan --}}
                     {{-- <a class="collapse-item {{ request()->is('users/roles-and-permissions') ? 'active' : '' }}" href="{{ route('roles.permissions') }}">Roles & Permissions</a> --}}
                 </div>
             </div>
         </li>
     @endcan
 
-    {{-- @can('access roles')
-        <!-- Nav Item - Roles & Permissions Collapse Menu -->
-        <li class="nav-item {{ request()->is('roles-and-permissions*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('roles.permissions') }}">
-                <i class="fas fa-fw fa-lock"></i>
-                <span>Roles & Permissions</span></a>
-        </li>
-    @endcan --}}
-
     @can('access roles')
-    <!-- Nav Item - FAQs Menu -->
-    <li class="nav-item {{ request()->is('roles-and-permissions*') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRolesAndPermissions"
-            aria-expanded="true" aria-controls="collapseRolesAndPermissions">
-            <i class="fas fa-fw fa-lock"></i>
-            <span>Roles & Permissions</span>
-        </a>
-        <div id="collapseRolesAndPermissions" class="collapse {{ request()->is('roles-and-permissions*') ? 'show' : '' }}"
-            aria-labelledby="headingFAQs" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Roles Components:</h6>
-                <a class="collapse-item {{ request()->is('roles-and-permissions') ? 'active' : '' }}"
-                    href="{{ route('roles.permissions') }}">List of Roles</a>
-                @can('create roles')
-                    <a class="collapse-item {{ request()->is('roles-and-permissions/create') ? 'active' : '' }}"
-                        href="{{ route('roles.permissions.create') }}">Create New Role</a>
-                @endcan
+        <!-- Nav Item - FAQs Menu -->
+        <li class="nav-item {{ request()->is('roles-and-permissions*') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRolesAndPermissions"
+                aria-expanded="true" aria-controls="collapseRolesAndPermissions">
+                <i class="fas fa-fw fa-lock"></i>
+                <span>Roles & Permissions</span>
+            </a>
+            <div id="collapseRolesAndPermissions"
+                class="collapse {{ request()->is('roles-and-permissions*') ? 'show' : '' }}" aria-labelledby="headingFAQs"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Roles Components:</h6>
+                    <a class="collapse-item {{ request()->is('roles-and-permissions') ? 'active' : '' }}"
+                        href="{{ route('roles.permissions') }}">List of Roles</a>
+                    {{-- @can('create roles')
+                        <a class="collapse-item {{ request()->is('roles-and-permissions/create') ? 'active' : '' }}"
+                            href="{{ route('roles.permissions.create') }}">Create New Role</a>
+                    @endcan --}}
+                </div>
             </div>
-        </div>
-    </li>
-@endcan
+        </li>
+    @endcan
 
     @can('access buildings')
         <!-- Nav Item - Buildings Collapse Menu -->
@@ -99,10 +91,10 @@
                     <h6 class="collapse-header">Building Components:</h6>
                     <a class="collapse-item {{ request()->is('buildings') ? 'active' : '' }}"
                         href="{{ route('buildings.index') }}">List of Buildings</a>
-                    @can('create buildings')
+                    {{-- @can('create buildings')
                         <a class="collapse-item {{ request()->is('buildings/create') ? 'active' : '' }}"
                             href="{{ route('buildings.create') }}">Create New Building</a>
-                    @endcan
+                    @endcan --}}
                 </div>
             </div>
         </li>
@@ -123,10 +115,10 @@
                     {{-- <h6 class="collapse-header"></h6> --}}
                     <a class="collapse-item {{ request()->is('supply-and-equipments') ? 'active' : '' }}"
                         href="{{ route('supply-and-equipments.index') }}">Supply and Equipments</a>
-                    @can('create supply and equipments')
+                    {{-- @can('create supply and equipments')
                         <a class="collapse-item {{ request()->is('supply-and-equipments/create') ? 'active' : '' }}"
                             href="{{ route('supply-and-equipments.create') }}">Create New</a>
-                    @endcan
+                    @endcan --}}
                 </div>
             </div>
         </li>
@@ -191,10 +183,10 @@
                     <h6 class="collapse-header">Workflow Components:</h6>
                     <a class="collapse-item {{ request()->is('workflows') ? 'active' : '' }}"
                         href="{{ route('workflows.index') }}">List of Workflows</a>
-                    @can('create workflows')
+                    {{-- @can('create workflows')
                         <a class="collapse-item {{ request()->is('workflows/create') ? 'active' : '' }}"
                             href="{{ route('workflows.create') }}">Create New Workflow</a>
-                    @endcan
+                    @endcan --}}
                 </div>
             </div>
         </li>
@@ -214,10 +206,10 @@
                     <h6 class="collapse-header">Form Components:</h6>
                     <a class="collapse-item {{ request()->is('forms') ? 'active' : '' }}"
                         href="{{ route('forms.index') }}">List of Forms</a>
-                    @can('create forms')
+                    {{-- @can('create forms')
                         <a class="collapse-item {{ request()->is('forms/create') ? 'active' : '' }}"
                             href="{{ route('forms.create') }}">Create New Form</a>
-                    @endcan
+                    @endcan --}}
                 </div>
             </div>
         </li>
@@ -246,10 +238,10 @@
                     <h6 class="collapse-header">FAQs Components:</h6>
                     <a class="collapse-item {{ request()->is('faqs') ? 'active' : '' }}"
                         href="{{ route('faqs.index') }}">List of FAQs</a>
-                    @can('create faqs')
+                    {{-- @can('create faqs')
                         <a class="collapse-item {{ request()->is('faqs/create') ? 'active' : '' }}"
                             href="{{ route('faqs.create') }}">Create New FAQ</a>
-                    @endcan
+                    @endcan --}}
                 </div>
             </div>
         </li>
@@ -263,6 +255,8 @@
                 <span>App Settings</span></a>
         </li>
     @endcan
+
+
 
     <!-- Nav Item - Tables -->
     {{-- <li class="nav-item">
