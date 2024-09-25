@@ -180,7 +180,7 @@
     <section id="faqs" class="container mt-5 mb-5">
         <h2 class="text-center">Frequently Asked Questions</h2>
         <div class="accordion" id="faqAccordion">
-            @foreach (App\Models\FAQ::all() as $faq)
+            @foreach (\App\Models\FAQ::all() as $faq)
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="heading{{ $faq->id }}">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
