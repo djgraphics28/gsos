@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\RolesAndPermissionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -33,9 +34,14 @@ use App\Livewire\Faqs\Edit as FaqEdit;
 
 use App\Livewire\Reports\Index as ReportIndex;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//frontend
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [FrontendController::class,'home'])->name('home');
+Route::get('/faq', [FrontendController::class,'faq'])->name('faq');
+Route::get('/services', [FrontendController::class,'services'])->name('services');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
