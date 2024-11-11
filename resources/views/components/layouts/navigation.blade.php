@@ -256,6 +256,33 @@
         </li>
     @endcan
 
+    {{-- @can('access frontend') --}}
+    <!-- Nav Item - Frontend Menu -->
+    <li class="nav-item {{ request()->is('frontend*') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFrontend"
+            aria-expanded="true" aria-controls="collapseFrontend">
+            <i class="fas fa-fw fa-building"></i>
+            <span>Frontend</span>
+        </a>
+        <div id="collapseFrontend" class="collapse {{ request()->is('frontend*') ? 'show' : '' }}"
+            aria-labelledby="headingFrontend" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Frontend Components:</h6>
+                <a class="collapse-item {{ request()->is('frontend/home') ? 'active' : '' }}"
+                    href="{{ route('frontend.home') }}">Manage Home</a>
+                <a class="collapse-item {{ request()->is('frontend/services') ? 'active' : '' }}"
+                    href="{{ route('faqs.index') }}">Manage Services</a>
+                <a class="collapse-item {{ request()->is('frontend/faq') ? 'active' : '' }}"
+                    href="{{ route('faqs.index') }}">Manage FAQs</a>
+                {{-- @can('create faqs')
+                <a class="collapse-item {{ request()->is('faqs/create') ? 'active' : '' }}"
+                    href="{{ route('faqs.create') }}">Create New FAQ</a>
+            @endcan --}}
+            </div>
+        </div>
+    </li>
+    {{-- @endcan --}}
+
 
 
     <!-- Nav Item - Tables -->

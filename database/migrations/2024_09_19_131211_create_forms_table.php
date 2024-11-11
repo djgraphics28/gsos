@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('workflow_id')->constrained();
-            $table->json('form_data'); // Store form data as JSON
+            $table->foreignId('workflow_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
         });
     }

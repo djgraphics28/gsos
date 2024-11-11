@@ -20,8 +20,9 @@ use App\Livewire\Workflow\Index as WorkflowIndex;
 use App\Livewire\Workflow\Create as WorkflowCreate;
 use App\Livewire\Workflow\Edit as WorkflowEdit;
 
+// use App\Livewire\Form\Index as FormIndex;
 use App\Livewire\Form\Index as FormIndex;
-use App\Livewire\Form\Create as FormCreate;
+use App\Livewire\DynamicForm as FormCreate;
 use App\Livewire\Form\Edit as FormEdit;
 
 use App\Livewire\SupplyEquipment\Index as SupplyEquipmentIndex;
@@ -33,6 +34,10 @@ use App\Livewire\Faqs\Create as FaqCreate;
 use App\Livewire\Faqs\Edit as FaqEdit;
 
 use App\Livewire\Reports\Index as ReportIndex;
+
+use App\Livewire\Frontend\Home as FrontendHome;
+use App\Livewire\Frontend\Services as FrontendServices;
+use App\Livewire\Frontend\Faqs as FrontendFaqs;
 
 //frontend
 // Route::get('/', function () {
@@ -97,6 +102,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/faqs', FaqIndex::class)->name('faqs.index');
         Route::get('/faqs/create', FaqCreate::class)->name('faqs.create');
         Route::get('/faqs/{faqId}/edit', FaqEdit::class)->name('faqs.edit');
+    });
+
+    // Routes for managing Frontend
+    Route::middleware('permission:access frontend')->group(function () {
+        Route::get('/frontend/home', FrontendHome::class)->name('frontend.home');
+        Route::get('/frontend/services', FrontendServices::class)->name('frontend.services');
+        Route::get('/frontend/faqs', FrontendFaqs::class)->name('frontend.faqs');
     });
 
     // // Routes for managing forms (submissions)

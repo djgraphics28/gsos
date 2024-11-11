@@ -75,6 +75,11 @@ class RolesAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'in-progress tickets']);
         Permission::create(['name' => 'closed tickets']);
 
+        Permission::create(['name' => 'access frontend']);
+        Permission::create(['name' => 'manage frontend home']);
+        Permission::create(['name' => 'manage frontend services']);
+        Permission::create(['name' => 'manage frontend faqs']);
+
         // Create roles and assign existing permissions
         $superAdminRole = Role::create(['name' => 'superadmin']);
         $superAdminRole->givePermissionTo(Permission::all());

@@ -84,7 +84,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#home">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" width="50">
                 <label class="text-lg">General Services Office System</label>
             </a>
@@ -95,13 +95,13 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('services') }}">Services</a> <!-- New Services menu item -->
+                        <a class="nav-link {{ request()->is('services') ? 'active' : '' }}" href="{{ route('services') }}">Services</a> <!-- New Services menu item -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('faq') }}">FAQs</a>
+                        <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQs</a>
                     </li>
                     @if (Auth::check())
                         <li class="nav-item">

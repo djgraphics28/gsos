@@ -22,8 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 
     @livewireStyles
 </head>
@@ -61,30 +60,38 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     @can('submit tickets')
-                                        <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Submit Ticket</a>
+                                        <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Submit
+                                            Ticket</a>
                                     @endcan
                                     @can('create users')
-                                        <a class="dropdown-item" href="{{ route('users.create') }}"><i class="fas fa-plus"></i> Create Users</a>
+                                        <a class="dropdown-item" href="{{ route('users.create') }}"><i
+                                                class="fas fa-plus"></i> Create Users</a>
                                     @endcan
                                     @can('create roles')
-                                        <a class="dropdown-item" href="{{ route('roles.permissions.create') }}"><i class="fas fa-plus"></i> Create
+                                        <a class="dropdown-item" href="{{ route('roles.permissions.create') }}"><i
+                                                class="fas fa-plus"></i> Create
                                         @endcan
                                         Roles</a>
                                     @can('create buildings')
-                                        <a class="dropdown-item" href="{{ route('buildings.create') }}"><i class="fas fa-plus"></i> Create Buildings</a>
+                                        <a class="dropdown-item" href="{{ route('buildings.create') }}"><i
+                                                class="fas fa-plus"></i> Create Buildings</a>
                                     @endcan
                                     @can('create supply and equipments')
-                                        <a class="dropdown-item" href="{{ route('supply-and-equipments.create') }}"><i class="fas fa-plus"></i> Create
+                                        <a class="dropdown-item" href="{{ route('supply-and-equipments.create') }}"><i
+                                                class="fas fa-plus"></i> Create
                                             Supply & Equipments</a>
                                     @endcan
                                     @can('create workflows')
-                                        <a class="dropdown-item" href="{{ route('workflows.create') }}"><i class="fas fa-plus"></i> Create Workflows</a>
+                                        <a class="dropdown-item" href="{{ route('workflows.create') }}"><i
+                                                class="fas fa-plus"></i> Create Workflows</a>
                                     @endcan
                                     @can('create forms')
-                                        <a class="dropdown-item" href="{{ route('forms.create') }}"><i class="fas fa-plus"></i> Create Forms</a>
+                                        <a class="dropdown-item" href="{{ route('forms.create') }}"><i
+                                                class="fas fa-plus"></i> Create Forms</a>
                                     @endcan
                                     @can('create faqs')
-                                        <a class="dropdown-item" href="{{ route('faqs.create') }}"><i class="fas fa-plus"></i> Create FAQs</a>
+                                        <a class="dropdown-item" href="{{ route('faqs.create') }}"><i
+                                                class="fas fa-plus"></i> Create FAQs</a>
                                     @endcan
                                 </div>
                             </div>
@@ -153,7 +160,8 @@
                                     </div>
                                     <div>
                                         <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                        <span class="font-weight-bold">A new monthly report is ready to
+                                            download!</span>
                                     </div>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -258,8 +266,7 @@
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name ?? '' }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{ Auth::user()->getFirstMediaUrl('profile_pictures') ?: asset('assets/img/undraw_profile.svg') }}"
-                                    >
+                                    src="{{ Auth::user()->getFirstMediaUrl('profile_pictures') ?: asset('assets/img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

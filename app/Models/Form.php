@@ -10,7 +10,12 @@ class Form extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = ['workflow_id', 'name'];
+
+    public function fields()
+    {
+        return $this->hasMany(FormField::class)->orderBy('order');
+    }
 
     /**
      * Get the workflow that owns the Form
