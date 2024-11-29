@@ -271,9 +271,9 @@
                 <a class="collapse-item {{ request()->is('frontend/home') ? 'active' : '' }}"
                     href="{{ route('frontend.home') }}">Manage Home</a>
                 <a class="collapse-item {{ request()->is('frontend/services') ? 'active' : '' }}"
-                    href="{{ route('faqs.index') }}">Manage Services</a>
+                    href="{{ route('frontend.services') }}">Manage Services</a>
                 <a class="collapse-item {{ request()->is('frontend/faq') ? 'active' : '' }}"
-                    href="{{ route('faqs.index') }}">Manage FAQs</a>
+                    href="{{ route('frontend.faqs') }}">Manage FAQs</a>
                 {{-- @can('create faqs')
                 <a class="collapse-item {{ request()->is('faqs/create') ? 'active' : '' }}"
                     href="{{ route('faqs.create') }}">Create New FAQ</a>

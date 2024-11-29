@@ -95,13 +95,16 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" aria-current="page"
+                            href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('services') ? 'active' : '' }}" href="{{ route('services') }}">Services</a> <!-- New Services menu item -->
+                        <a class="nav-link {{ request()->is('services') ? 'active' : '' }}"
+                            href="{{ route('services') }}">Services</a> <!-- New Services menu item -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}" href="{{ route('faq') }}">FAQs</a>
+                        <a class="nav-link {{ request()->is('faq') ? 'active' : '' }}"
+                            href="{{ route('faq') }}">FAQs</a>
                     </li>
                     @if (Auth::check())
                         <li class="nav-item">
@@ -120,7 +123,7 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="btn btn-success" href="">Submit a Request</a>
+                        <a class="btn btn-success" href="{{ route('submit-request') }}">Submit a Request</a>
                     </li>
                 </ul>
             </div>
@@ -145,6 +148,21 @@
 
     <!-- Bootstrap JS and Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/6741529e2480f5b4f5a2af6c/1idbiles2';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 
 </html>

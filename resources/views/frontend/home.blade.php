@@ -7,36 +7,22 @@
     <section id="home">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+                @foreach (\App\Models\Banner::all() as $index => $item)
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}"
+                        class="{{ $index == 0 ? 'active' : '' }}" aria-current="{{ $index == 0 ? 'true' : 'false' }}"></button>
+                @endforeach
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://via.placeholder.com/1920x500/ff7f7f/333333?text=Slide+1" class="d-block w-100"
-                        alt="Slide 1">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Slide 1 Title</h5>
-                        <p>Slide 1 description goes here.</p>
+                @foreach (\App\Models\Banner::all() as $index => $item)
+                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                        <img src="{{ $item->getFirstMediaUrl('banners', 'large') ?: 'https://via.placeholder.com/1920x500/ff7f7f/333333?text=Default+Slide' }}"
+                            class="d-block w-100" alt="Banner {{ $index + 1 }}">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ $item->title ?? 'Default Title' }}</h5>
+                            <p>{{ $item->description ?? 'Default description goes here.' }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1920x500/7f7fff/333333?text=Slide+2" class="d-block w-100"
-                        alt="Slide 2">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Slide 2 Title</h5>
-                        <p>Slide 2 description goes here.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://via.placeholder.com/1920x500/7fff7f/333333?text=Slide+3" class="d-block w-100"
-                        alt="Slide 3">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Slide 3 Title</h5>
-                        <p>Slide 3 description goes here.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev">

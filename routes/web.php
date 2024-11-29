@@ -44,15 +44,18 @@ use App\Livewire\Frontend\Faqs as FrontendFaqs;
 //     return view('welcome');
 // });
 
-Route::get('/', [FrontendController::class,'home'])->name('home');
-Route::get('/faq', [FrontendController::class,'faq'])->name('faq');
-Route::get('/services', [FrontendController::class,'services'])->name('services');
+Route::get('/', [FrontendController::class, 'home'])->name('home');
+Route::get('/faq', [FrontendController::class, 'faq'])->name('faq');
+Route::get('/services', [FrontendController::class, 'services'])->name('services');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/submit-request', [FrontendController::class, 'submitRequest'])->name('submit-request');
+    Route::get('/request-success', [FrontendController::class, 'requestSuccess'])->name('request-success');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('permission:access profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('permission:edit profile');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware('permission:edit profile');
@@ -84,7 +87,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('permission:access forms')->group(function () {
         Route::get('/forms', FormIndex::class)->name('forms.index');
         Route::get('/forms/create', FormCreate::class)->name('forms.create');
-        Route::get('/forms/{workflow}/edit', FormEdit::class)->name('forms.edit');
+        Route::get('/forms/{form_id}/edit', FormEdit::class)->name('forms.edit');
     });
 
     Route::middleware('permission:access supply and equipments')->group(function () {
